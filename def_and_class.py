@@ -111,6 +111,7 @@ class Enemy(pygame.sprite.Sprite):
         self.money = money
         self.tup = tup
         self.rect = self.image.get_rect()
+        self.mask = pygame.mask.from_surface(self.image)
         if self.tup == 0:
             top = random.randint(0, 2)
             if top:
@@ -131,6 +132,9 @@ class Enemy(pygame.sprite.Sprite):
         elif self.tup == 4:
             self.rect.x = random.randint(0, width)
             self.rect.y = random.randint(-2000, 0)
+        elif self.tup == 6:
+            self.rect.x = 200
+            self.rect.y = 200
         elif self.tup == 5:
             qwe = random.randint(1, 4)
             self.tup = qwe
@@ -176,6 +180,9 @@ class Enemy(pygame.sprite.Sprite):
             self.rect.x -= self.speed
         elif self.tup == 4:
             self.rect.y += self.speed
+        elif self.tup == 6:
+            self.rect.x = 200
+            self.rect.y = 200
         if activ_word == self.name:
             print(self.name + "qwerty")
             self.kill()
@@ -215,6 +222,11 @@ def generate(n, tup):
             Enemy((960, 540), let[i], 3,
                   f"enemy/{let[i]}/tile000.png", 30, 15, tup, new_enemy)
     elif tup == 5:
+        let = random.choices(letters, k=n)
+        for i in range(n):
+            Enemy((960, 540), let[i], 3,
+                  f"enemy/{let[i]}/tile000.png", 30, 15, tup, new_enemy)
+    elif tup == 6:
         let = random.choices(letters, k=n)
         for i in range(n):
             Enemy((960, 540), let[i], 3,

@@ -7,6 +7,7 @@ class Player(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.original_image = pygame.image.load(f"data/images/{skin}.png").convert_alpha()
         self.image = self.original_image
+        self.mask = pygame.mask.from_surface(self.image)
         # Загружаем изображение игрока
         self.rect = self.image.get_rect(center=pos)
         self.z = 7

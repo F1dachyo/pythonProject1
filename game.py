@@ -53,6 +53,7 @@ class Game:
             for sprite in self.enemy_sprites:
                 sprite.kill()
             self.enemy_sprites.add(generate(5, 5))
+            # self.enemy_sprites.add(generate(1, 6))
             self.gen = False
 
     def start_game(self):
@@ -101,7 +102,10 @@ class Game:
                 self.world.create(t)
 
                 self.generate_enemies()
-
+                for i in self.enemy_sprites.sprites():
+                    print(self.world.player.image.get_size())
+                    if pygame.sprite.collide_mask(i, self.world.player):
+                        pygame.quit()
                 if pygame.mouse.get_focused():
                     self.enemy_sprites.update(self.world.player.pos, act_word)
                 if activ:
